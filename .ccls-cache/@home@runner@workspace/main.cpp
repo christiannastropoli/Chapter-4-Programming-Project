@@ -1,35 +1,80 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
-double theRate (double weight) {
-  if (weight <= 2) 
-    return 1.10;
-  else if (weight <= 6)
-    return 2.20;
-  else if (weight <= 10)
-    return 3.70;
-  else
-    return 4.80;
-}
-int main () {
-  double weight;
-  int distance;
+const double pi = 3.14159265358979322846;
 
-  cout << "enter weight of the package in kilograms: ";
-  cin >> weight;
+void showMenu();
+double acircle(double radius);
+double arectangle(double length, double width);
+double atriangle(double base, double height);
 
-  while (weight <= 0 || weight > 20) {
-    cout << "invalid weight. please enter a weight more than 0 and less than 20: ";
-    cin >> weight;
+int (main) {
+  int insert;
+  double radius, length, width, base, height;
+  showMenu();
+  cout << "insert option: ";
+  cin >> insert;
+
+    if (choice < 1 || choice > 4) {
+    cout << "invalid insert. please choose between 1 and 4." << endl;
+    return 0;
+    }
+switch (choice) {
+  case 1:
+  cout << "enter radius of circle: ";
+  cin >> radius;
+  if ( radius < 0) {
+    cout << "please only use positive values." << endl;
   }
-
-  cout << "enter distance in miles: ";
-  cin >> distance;
-
-  int segment = ceil(distance / 500.0);
-  double rate = theRate(weight);
-  double totalCharge = rate * segment;
-
-  cout << "total shipping charge: $" << totalCharge << endl;
+  else {
+    cout << "area of the circle: " << acircle(radius) << endl;
+  }
+break;
+  case 2:
+  cout << "enter length: " << endl;
+  cin >> length;
+  cout << "enter width: " << endl;
+  cin >> width;
+  if (length < 0 || width < 0) {
+    cout << "please only use positive values." << endl;
+  } else {
+    cout << "area of the rectangle: " << arectangle(length, width) << endl;
+  }
+  break;
+  case 3:
+  cout << "enter base: " << endl;
+  cin >> base;
+  cout << "enter height: " << endl;
+  cin >> height;
+  if ( base < 0 || height < 0) {
+    cout << "please only use positive values." << endl;
+  } 
+  else {
+    cout << "area of the triangle: " << atriangle(base, height) << endl;
+  }
+  break;
+  case 4:
+  cout << "ending program." << endl;
+  break;
+  }
   return 0;
+}
+
+void showMenu() {
+  cout << "calculating geometrical area!" << endl;
+  cout << "1. circle" << endl;
+  cout << "2. rectangle" << endl;
+  cout << "3. triangle" << endl;
+  cout << "4. terminate" << endl;
+}
+
+double acircle(double radius) {
+  return pi * radius * radius;
+}
+
+double arectangle(double length, double width) {
+  return length * width;
+}
+
+double atriangle(double base, double height) {
+  return 0.5 * base * height * 0.5;
 }
