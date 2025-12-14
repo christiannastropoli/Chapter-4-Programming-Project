@@ -1,43 +1,35 @@
 #include <iostream>
-
+#include <cmath>
 using namespace std;
-
-bool LeapYear(int year) {
-  if (year % 100 == 0) {
-    return year % 400 == 0;
-  }
-  else {
-    return year % 4 == 0;
-  }
+double theRate (double weight) {
+  if (weight <= 2) 
+    return 1.10;
+  else if (weight <= 6)
+    return 2.20;
+  else if (weight <= 10)
+    return 3.70;
+  else
+    return 4.80;
 }
-int DaysMonth(int month, int year) {
-  if ( month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
-    return 31;
-  if ( month == 4 || month == 6 || month == 9 || month == 11)
-    return 30;
-  if (month == 2) {
-    if (LeapYear(year))
-      return 29;
-    else
-      return 28;
+int main () {
+  double weight;
+  int distance;
+
+  cout << "enter weight of the package in kilograms: ";
+  cin >> weight;
+
+  while (weight <= 0 || weight > 20) {
+    cout << "invalid weight. please enter a weight more than 0 and less than 20: ";
+    cin >> weight;
   }
-  return 0;
-}
-int main() {
-  int month, year;
 
-  cout << "enter month please:";
-  cin >> month;
+  cout << "enter distance in miles: ";
+  cin >> distance;
 
-  while (month < 1 || month > 12) {
-    cout << "invalid month. try again:";
-    cin >> month;
-  }
-  cout << "enter year please:";
-  cin >> year;
+  int segment = ceil(distance / 500.0);
+  double rate = theRate(weight);
+  double totalCharge = rate * segment;
 
-  int days = DaysMonth(month, year);
-
-  cout << days << " days" << endl;
+  cout << "total shipping charge: $" << totalCharge << endl;
   return 0;
 }
