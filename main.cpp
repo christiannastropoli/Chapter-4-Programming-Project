@@ -7,18 +7,18 @@ double acircle(double radius);
 double arectangle(double length, double width);
 double atriangle(double base, double height);
 
-int (main) {
+int main() {
   int insert;
   double radius, length, width, base, height;
   showMenu();
   cout << "insert option: ";
   cin >> insert;
 
-    if (choice < 1 || choice > 4) {
+    if (insert < 1 || insert > 4) {
     cout << "invalid insert. please choose between 1 and 4." << endl;
     return 0;
     }
-switch (choice) {
+switch (insert) {
   case 1:
   cout << "enter radius of circle: ";
   cin >> radius;
@@ -76,5 +76,5 @@ double arectangle(double length, double width) {
 }
 
 double atriangle(double base, double height) {
-  return 0.5 * base * height * 0.5;
+  return 0.5 * base * height;
 }
